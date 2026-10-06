@@ -1,0 +1,43 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "jira-lean-mcp"
+version = "0.1.0"
+description = "A token-efficient MCP server for Jira and Confluence Cloud: shaped, minimal reads and id-only write responses."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "OzturkArda" }]
+requires-python = ">=3.10"
+keywords = ["mcp", "model-context-protocol", "jira", "confluence", "atlassian", "llm", "claude"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Bug Tracking",
+]
+dependencies = [
+    "mcp>=1.28,<2",
+    "httpx>=0.28",
+    "markdown>=3.10",
+    "markdownify>=1.2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.urls]
+Homepage = "https://github.com/OzturkArda/jira-lean-mcp"
+Issues = "https://github.com/OzturkArda/jira-lean-mcp/issues"
+
+[project.scripts]
+jira-lean-mcp = "jira_lean_mcp.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/jira_lean_mcp"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
